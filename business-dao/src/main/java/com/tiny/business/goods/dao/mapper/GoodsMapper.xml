@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.goods.dao.GoodsMapper" >
+  <resultMap type="com.tiny.business.goods.model.GoodsModel" id="goodsMap">
+      <id property="goodsId" column="goods_id"/>
+      <result column="goods_id" property="goodsId"/>
+      <result column="cat_id" property="catId"/>
+      <result column="goods_sn" property="goodsSn"/>
+      <result column="goods_name" property="goodsName"/>
+      <result column="click_count" property="clickCount"/>
+      <result column="brand_id" property="brandId"/>
+      <result column="provider_name" property="providerName"/>
+      <result column="goods_number" property="goodsNumber"/>
+      <result column="shop_price" property="shopPrice"/>
+      <result column="goods_brief" property="goodsBrief"/>
+      <result column="goods_desc" property="srcPath"/>
+      <result column="goods_img" property="goodsImg"/>
+      <result column="integral" property="integral"/>
+      <association property="goodsType" javaType="com.tiny.business.goods.model.GoodsTypeModel"  >
+          <id property="goodsType_id" column="id"/>
+          <result column="goods_type_img" property="goodsTypeImg"/>
+          <result column="parent_cat_id" property="parentCatId"/>
+      </association>
+  </resultMap>
+  <sql id="good">
+      g.goods_id,g.cat_id,g.goods_sn,g.goods_name,g.click_count,g.brand_id 
+      ,g.provider_name,g.goods_number,g.goods_weight,g.shop_price
+      ,g.goods_brief,g.goods_desc,g.goods_img,g.integral
+  </sql>
+  
+  <select id="queryForList" parameterType="com.tiny.business.goods.model.GoodsModel" resultMap="goodsMap">
+      select 
+     <include refid="good"/> ,t.goods_type_img
+      ,t.parent_cat_id
+      from goods g ,goods_type t 
+      where t.cat_id = g.cat_id 
+      and g.suppliers_id = #{suppliersId}
+  </select>
+  <insert id="insertData" parameterType="com.tiny.business.goods.model.GoodsModel">
+      insert into goods(goods_id,cat_id,goods_name,provider_name,goods_number,shop_price,suppliers_id)
+      values
+      (#{goodsId},#{catId},#{goodsName},#{providerName},#{goodsNumber},#{shopPrice},#{suppliersId})
+  </insert>
+   
+  <select id="queryObject" parameterType="com.tiny.business.goods.model.GoodsModel">
+      select <include refid="good"/> from goods g where g.suppliers_id = #{suppliersId} and g.goods_id = #{goodsId}
+  </select>
+</mapper>
