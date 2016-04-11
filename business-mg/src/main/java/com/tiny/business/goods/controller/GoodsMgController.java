@@ -157,7 +157,7 @@ public class GoodsMgController {
 	}
 	
 	public void testSour(){
-		
+		System.out.println("orger分支");
 	}
 	
 }
