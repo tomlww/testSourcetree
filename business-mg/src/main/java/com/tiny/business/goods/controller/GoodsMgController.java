@@ -156,4 +156,8 @@ public class GoodsMgController {
 		return rmap;
 	}
 	
+	public void testSour(){
+		
+	}
+	
 }
