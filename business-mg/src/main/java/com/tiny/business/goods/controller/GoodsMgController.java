@@ -160,4 +160,8 @@ public class GoodsMgController {
 		System.out.println("orger分支");
 	}
 	
+	public void order(){
+		System.out.println("testSour的order分支");
+	}
+	
 }
