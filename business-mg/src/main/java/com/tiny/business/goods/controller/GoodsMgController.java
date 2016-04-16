@@ -160,4 +160,8 @@ public class GoodsMgController {
 		System.out.println("orger分支");
 	}
 	
+	public void user(){
+		System.out.println("wangwu的分支");
+	}
+	
 }
