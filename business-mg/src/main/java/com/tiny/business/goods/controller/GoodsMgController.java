@@ -161,7 +161,7 @@ public class GoodsMgController {
 	}
 	
 	public void user(){
-		System.out.println("wangwu的分支");
+		System.out.println("wangwu的分支test");
 	}
 	
 }
